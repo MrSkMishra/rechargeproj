@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recharge</title>
+</head>
+<body>
+    <h1>Recharge</h1>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% else %}
+    <form method="POST">
+        {% csrf_token %}
+        <label for="plan">Select Plan:</label>
+        <select name="plan">
+            {% for plan in plans %}
+                <option value="{{ plan.id }}">{{ plan.name }} - {{ plan.price }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="mobile_number">Mobile Number:</label>
+        <input type="text" name="mobile_number">
+        <br>
+        <label for="description">Description:</label>
+        <p>{{ plan.description }}</p>
+        <br>
+        <input type="submit" value="Recharge">
+    </form>
+    {% endif %}
+</body>
+</html>
